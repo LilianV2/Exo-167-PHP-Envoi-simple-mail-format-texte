@@ -6,10 +6,18 @@
  * 3. Déployez sur votre serveur et testez !
  */
 
-$from = '';
-$to = '';
+
+$from = 'pipixg@gmail.com';
+$to = 'liliaom59@outlook.fr';
+$subject = 'truc';
+/**
 $message = 'Hello World, sending a simple mail !';
 // TODO Votre code ici.
+
+mail($to, $subject, $message);
+ **/
+
+
 
 
 /**
@@ -24,3 +32,26 @@ $message = 'Hello World, sending a simple mail !';
  *     N'écrasez pas les valeurs déjà existantes ( s'il y en a ).
  */
 // TODO Votre code ici.
+
+$message = 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+ lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem';
+$message = wordwrap($message, 70, "\r\n");
+$headers = [
+  'Reply-To' => 'pipixg@gmail.com',
+  'Cc' =>  'lilianom59@outlook.fr',
+    'X-Mailer' => 'PHP/' . phpversion()
+];
+
+$send = mail($to,$subject,$message,$headers);
+
+if (!$send){
+    echo "Une erreur est survenue lors de l'envoi ddu mail . . .";
+}else{
+    echo "Le message a bien été envoyé, Merci !";
+}
+
+file_put_contents("mail.txt",$message, FILE_APPEND);
+file_put_contents("mail.txt",' / '.$to, FILE_APPEND);
+file_put_contents("mail.txt", '\n\n' , FILE_APPEND);
+
+
